@@ -1,0 +1,24 @@
+# Common endpoints between environments
+common:
+  endpoints:
+    - address: localhost
+      port: 8080
+      protocol: TCP # defaults as TCP check, can be omitted
+    - address: 8.8.8.8
+      port: 53
+      protocol: UDP
+
+environments:
+  dev:
+    endpoints:
+      - address: localhost
+        port: 8081
+        protocol: TCP
+  qa:
+    endpoints:
+      - address: www.google.it
+        port: 80
+        protocol: TCP
+      - address: www.google.it
+        port: 443
+        protocol: TCP
