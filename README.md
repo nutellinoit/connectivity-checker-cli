@@ -13,6 +13,10 @@ your business unit is not in charge of firewall openings.
 
 ## How to use
 
+```text
+Usage ./connectivity-check.sh [environment] <configfile.yaml>
+```
+
 The bundled `checks.yaml` file is an example on the check structure:
 
 ```yaml

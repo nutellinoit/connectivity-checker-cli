@@ -6,8 +6,14 @@ NC='\033[0m'
 YAML_FILE=checks.yaml
 ENVIRONMENT=$1
 
+if [ "$2" == "" ]; then
+  YAML_FILE=checks.yaml
+else
+  YAML_FILE=$2
+fi
+
 if [ -z "${ENVIRONMENT}" ]; then
-    echo "Usage ./connectivity-check.sh [environment]"
+    echo "Usage ./connectivity-check.sh [environment] <configfile.yaml>"
     exit 1
 fi
 
