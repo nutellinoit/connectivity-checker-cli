@@ -1,4 +1,4 @@
-# connectivity-check-yaml-yq
+# connectivity-checker-cli
 
 The goal of this project is to have a simple bash script using:
 
