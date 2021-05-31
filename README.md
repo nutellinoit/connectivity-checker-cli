@@ -17,7 +17,7 @@ your business unit is not in charge of firewall openings.
 Usage ./connectivity-check.sh [environment] <configfile.yaml>
 ```
 
-The bundled `checks.yaml` file is an example on the check structure:
+The bundled `checks.yaml` file is an example to show the file structure:
 
 ```yaml
 common:
