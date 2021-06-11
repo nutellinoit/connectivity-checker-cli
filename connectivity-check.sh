@@ -46,6 +46,17 @@ function ncCheck() {
 
 }
 
+function proxyCheck() {
+
+   RESULT=$(curl -Is --proxy $2 $1 | head -n1 | grep 200 | wc -l | tr -d "[:space:]")
+   if [ "${RESULT}" == "1" ]; then
+      echo -e "${GREEN}[SUCCESS]${NC} - $1 is reachable via proxy $2"
+   else
+      echo -e "${RED}[FAIL]${NC} - $1 is not reachable via proxy $2"
+   fi
+
+}
+
 ENDPOINTS=$(yq e '.common.endpoints | length' ${YAML_FILE})
 
 for (( c=0; c<${ENDPOINTS}; c++ ))
@@ -59,6 +70,25 @@ do
   ncCheck ${ADDRESS} ${PORT} ${PROTOCOL}
 
 done
+
+
+
+
+URLS=$(yq e '.common.urls | length' ${YAML_FILE})
+
+for (( c=0; c<${URLS}; c++ ))
+do
+  # Test endpoint
+
+  ADDRESS=$(yq e '.common.urls['"${c}"'].address' ${YAML_FILE})
+  PROXY=$(yq e '.environments.'${ENVIRONMENT}'.proxy' ${YAML_FILE})
+
+  proxyCheck ${ADDRESS} ${PROXY}
+
+done
+
+
+
 
 ENDPOINTS=$(yq e '.environments.'${ENVIRONMENT}'.endpoints | length' ${YAML_FILE})
 

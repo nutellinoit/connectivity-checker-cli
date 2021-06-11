@@ -7,6 +7,9 @@ common:
     - address: 8.8.8.8
       port: 53
       protocol: UDP
+  urls:
+    - address: https://www.nutellino.it
+    - address: https://hub.docker.com
 
 environments:
   dev:
@@ -14,6 +17,7 @@ environments:
       - address: localhost
         port: 8081
         protocol: TCP
+    proxy: http://192.168.1.100:8119 # needed when setting urls on common
   qa:
     endpoints:
       - address: www.google.it
@@ -22,3 +26,4 @@ environments:
       - address: www.google.it
         port: 443
         protocol: TCP
+    proxy: http://192.168.1.100:8119
